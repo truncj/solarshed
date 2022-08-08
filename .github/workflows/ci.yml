@@ -32,9 +32,8 @@ jobs:
           docker push ghcr.io/truncj/solarshed:${{ github.sha }}
           docker push ghcr.io/truncj/solarshed:latest
 
-#      -
-#        name: Deploy
-#        run: |
-#          docker-compose pull
-#          docker-compose up -d
-#        working-directory: /home/pi/Projects/thermos
+      -
+        name: Deploy
+        run: |
+          docker rmi ghcr.io/truncj/solarshed
+          docker run --name solarshed -d -p 5000:5000 ghcr.io/truncj/solarshed --device /dev/ttyUSB0:/dev/ttyUSB0 --restart=always
