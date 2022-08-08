@@ -35,5 +35,5 @@ jobs:
       -
         name: Deploy
         run: |
-          docker rm -f ghcr.io/truncj/solarshed
+          docker rm -f solarshed
           docker run --name solarshed -d -p 5000:5000 --device /dev/ttyUSB0:/dev/ttyUSB0 --restart=always ghcr.io/truncj/solarshed 
