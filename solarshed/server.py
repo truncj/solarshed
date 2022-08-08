@@ -6,7 +6,7 @@ from solarshed.controllers.renogy_rover import RenogyRover
 
 logger = logging.getLogger(__name__)
 
-SCRAPE_DELAY = 600
+SCRAPE_DELAY = 5
 
 battery_percentage_gauge = Gauge('solarshed_battery_percentage', 'Battery %')
 battery_voltage_gauge = Gauge('solarshed_battery_volts', 'Battery Voltage')
