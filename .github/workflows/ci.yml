@@ -24,8 +24,8 @@ jobs:
       -
         name: Tag
         run: |
-          docker tag ghcr.io/truncj/thermos ghcr.io/truncj/solarshed:latest
-          docker tag ghcr.io/truncj/thermos ghcr.io/truncj/solarshed:${{ github.sha }}
+          docker tag ghcr.io/truncj/solarshed ghcr.io/truncj/solarshed:latest
+          docker tag ghcr.io/truncj/solarshed ghcr.io/truncj/solarshed:${{ github.sha }}
       -
         name: Push
         run: |
