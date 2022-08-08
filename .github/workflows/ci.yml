@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+    branches: master
+
+jobs:
+  docker-build-push:
+    runs-on: self-hosted
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+      -
+        name: Build
+        run: docker build -t ghcr.io/truncj/solarshed .
+      -
+        name: Tag
+        run: |
+          docker tag ghcr.io/truncj/thermos ghcr.io/truncj/solarshed:latest
+          docker tag ghcr.io/truncj/thermos ghcr.io/truncj/solarshed:${{ github.sha }}
+      -
+        name: Push
+        run: |
+          docker push ghcr.io/truncj/solarshed:${{ github.sha }}
+          docker push ghcr.io/truncj/solarshed:latest
+
+#      -
+#        name: Deploy
+#        run: |
+#          docker-compose pull
+#          docker-compose up -d
+#        working-directory: /home/pi/Projects/thermos
