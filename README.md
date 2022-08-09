@@ -5,6 +5,11 @@
 * ~100mb container size
 * Sample grafana dashboard (./grafana/sample_solar_dashboard.json)
 
+### How to build
+```
+docker build -t ghcr.io/truncj/solarshed .
+```
+
 ### How to run 
 ```
 docker run --name solarshed -d -p 5000:5000 \
