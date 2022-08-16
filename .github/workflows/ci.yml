@@ -6,7 +6,7 @@ on:
 
 jobs:
   docker-build-push:
-    runs-on: self-hosted
+    runs-on: build
     steps:
       -
         name: Checkout
@@ -32,6 +32,9 @@ jobs:
           docker push ghcr.io/truncj/solarshed:${{ github.sha }}
           docker push ghcr.io/truncj/solarshed:latest
 
+  docker-deploy:
+    runs-on: deploy
+    steps:
       -
         name: Deploy
         run: |
